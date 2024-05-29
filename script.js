@@ -9,14 +9,21 @@ function init() {
 
 function showQuestion() {
   if (currentQuestion >= questions.length) {
-    
-    document.getElementById('endScreen').style = '';
-    document.getElementById('questionBody').style = 'display: none';
+    // Show End Screen
+    document.getElementById('endScreen').style.display = '';
+    document.getElementById('questionBody').style.display = 'none';
 
     document.getElementById('amount-of-questions').innerHTML = questions.length;
     document.getElementById('amount-of-right-questions').innerHTML = rightQuestions;
     document.getElementById('header-image').src = 'img/trophy.png';
-  } else {
+  } else { // Show Next Question
+
+    let percent = (currentQuestion + 1) / questions.length * 100;
+    document.getElementById('progress-bar').innerHTML = `${Math.round(percent)}%`;
+    document.getElementById('progress-bar').style.width = `${percent}%`;
+
+    console.log('Fortschritt', percent);
+
     let question = questions[currentQuestion];
 
     document.getElementById('question-number').innerHTML = currentQuestion + 1;
